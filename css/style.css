@@ -1,0 +1,13 @@
+body {
+	padding: 5px;
+}
+
+.center {
+	text-align: center;
+}
+
+/* socket_tester.hbs */
+
+#gridSocket {
+	margin: 5px;
+}

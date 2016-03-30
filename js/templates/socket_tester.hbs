@@ -1,0 +1,85 @@
+<div class="ui icon message">
+	<i id="statusIcon" class="lightning icon red"></i>
+	<div class="content">
+	  <div class="header">
+		{{ host }} : {{ port }}
+		</div>
+		<p id="statusMessage">Disconnected</p>
+	</div>
+	<button id="buttonChangeStatus" class="ui green button">Reconnect</button>
+	<a href="" class="ui button">Back</a>
+</div>
+
+<div id="gridSocket" class="ui grid">
+
+	<div class="height wide column">
+		<div id="divTestSocketForm" class="ui container">
+			<h2 class="center">Test sockets</h2>
+			<form id="formTestSocket" class="ui form">
+				<div class="disabled field">
+					<label>Event name:</label>
+					<input id="inputEventName" placeholder="event name">
+				</div>
+
+				<div class="inline fields">
+					<label>Data type:</label>
+					<div class="disabled field">
+						<div class="ui radio checkbox">
+							<input type="radio" name="radioDataType" checked="checked" value="text">
+							<label>Text</label>
+						</div>
+					</div>
+					<div class="disabled field">
+						<div class="ui radio checkbox">
+							<input type="radio" name="radioDataType" value="json">
+							<label>JSON</label>
+						</div>
+					</div>
+				</div>
+
+				<div id="textField" class="disabled field">
+					<label>Message:</label>
+					<input id="inputText" placeholder="message">
+				</div>
+				<div id="jsonField" class="disabled field" style="display:none;">
+					<label>JSON:</label>
+					<textarea id="inputJSON" placeholder="{ }"></textarea>
+				</div>
+
+				<button id="buttonSendSocket" class="ui button disabled" type="submit">Send</button>
+
+				<div id="sendInputError" class="ui error message">
+					<ul class="list"></ul>
+				</div>
+			</form>
+			<button id="buttonRemoveOutputDiv" class="ui button" style="display: none">Clear output</button>
+		</div>
+	</div>
+
+	<div class="height wide column">
+		<div id="divListenEventForm" class="ui container">
+			<h2 class="center">Events to listen</h2>
+			<form class="ui form">
+				<div class="disabled field">
+					<label>Event name:</label>
+					<input id="inputEventNameToListen" placeholder="event name to listen">
+				</div>
+
+				<button id="buttonSendListen" class="ui button disabled" type="submit">Send</button>
+
+				<div id="sendInputListenError" class="ui error message">
+					<ul class="list"></ul>
+				</div>
+			</form>
+			<button id="buttonRemoveOutputDivListen" class="ui button" style="display: none">Clear output</button>
+		</div>
+	</div>
+
+</div>
+
+<!-- Default template -->
+<div id="divOutput" class="ui segment" style="display:none;">
+	<i class="large red remove icon" style="float: right;"></i>
+	<h2 class="ui header" style="margin-top: 0"></h2>
+	<p></p>
+</div>
