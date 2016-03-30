@@ -2,6 +2,8 @@
 
 > A simple application to test sockets from [socket.io](http://socket.io/).
 
+[![david][david-image]][david-url]
+
 [david-image]: https://img.shields.io/david/lludol/socket-io-tester.svg?style=flat-square
 [david-url]: https://david-dm.org/lludol/socket-io-tester
 
