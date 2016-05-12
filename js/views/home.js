@@ -14,6 +14,8 @@ class HomeView extends View {
 			}
 		});
 		this.initializeTemplate(__dirname + '/../templates/home.hbs');
+		const hostConfig = configstore.get('host');
+		this.hostModel = new HostModel(hostConfig);
 	}
 
 	clickButtonConnection(e) {
@@ -32,7 +34,7 @@ class HomeView extends View {
 	}
 
 	render() {
-		this.$el.html(this.template());
+		this.$el.html(this.template(this.hostModel.toJSON()));
 	}
 }
 
