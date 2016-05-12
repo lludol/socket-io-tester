@@ -51,7 +51,7 @@ class SocketTesterView extends View {
 		outputDiv.attr('id', '');
 		outputDiv.addClass(className);
 
-		outputDiv.find('i').click(() => {
+		outputDiv.find('i').click(function() {
 			$(this).parent().remove();
 			onRemove();
 		});
@@ -82,6 +82,7 @@ class SocketTesterView extends View {
 		const radio		= $('input[name=radioDataType]:checked', '#formTestSocket').val();
 		let data		= null;
 
+		$('#sendInputError').hide();
 		$('#sendInputError').find('ul').empty();
 
 		if (eventName === null || eventName.length === 0) {
