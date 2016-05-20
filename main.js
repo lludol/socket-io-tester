@@ -1,18 +1,9 @@
-'use strict';
-
-const electron		= require('electron');
-const app			= electron.app;
-const BrowserWindow	= electron.BrowserWindow;
+const electron				= require('electron');
+const {app, BrowserWindow}	= electron;
 
 let mainWindow = null;
 
-app.on('window-all-closed', () => {
-	if (process.platform != 'darwin') {
-		app.quit();
-	}
-});
-
-app.on('ready', () => {
+function createWindow() {
 	mainWindow = new BrowserWindow({
 		'minWidth':		800,
 		'minHeight':	500,
@@ -24,4 +15,18 @@ app.on('ready', () => {
 	mainWindow.on('closed', () => {
 		mainWindow = null;
 	});
+}
+
+app.on('window-all-closed', () => {
+	if (process.platform != 'darwin') {
+		app.quit();
+	}
+});
+
+app.on('ready', createWindow);
+
+app.on('activate', () => {
+	if (mainWindow === null) {
+		createWindow();
+	}
 });
