@@ -2,10 +2,10 @@
 
 > A simple application to test sockets from [socket.io](http://socket.io/).
 
-[![david][david-image]][david-url]
-
-[david-image]: https://img.shields.io/david/lludol/socket-io-tester.svg?style=flat-square
-[david-url]: https://david-dm.org/lludol/socket-io-tester
+[![dependency status](https://david-dm.org/lludol/socket-io-tester.svg)](https://david-dm.org/lludol/socket-io-tester\
+)
+[![dev-dependencies status](https://david-dm.org/lludol/socket-io-tester/dev-status.svg)](https://david-dm.org/lludol\
+/socket-io-tester#info=devDependencies)
 
 # Usage
 
