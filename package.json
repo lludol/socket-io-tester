@@ -16,6 +16,7 @@
     "url": "https://github.com/lludol/socket-io-tester/issues"
   },
   "devDependencies": {
+    "cz-conventional-changelog": "^1.2.0",
     "electron-prebuilt": "^1.1.0"
   },
   "dependencies": {
@@ -25,5 +26,10 @@
     "jquery": "^2.2.2",
     "socket.io-client": "^1.4.5",
     "validator": "^5.1.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
