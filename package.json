@@ -1,6 +1,6 @@
 {
   "name": "socket-io-tester",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A simple application to test sockets from socket.io",
   "main": "main.js",
   "scripts": {
