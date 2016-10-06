@@ -24,7 +24,7 @@ class HomeView extends View {
 			host: $('#inputHost').val(),
 			port: $('#inputPort').val()
 		};
-		if (validator.isURL(data.host) && validator.isNumeric(data.port)) {
+		if (validator.isURL(data.host) && (data.port.length === 0 || validator.isNumeric(data.port))) {
 			if (!data.host.startsWith('http://') && !data.host.startsWith('https://')) {
 				data.host = 'http://' + data.host;
 			}

@@ -20,7 +20,11 @@ class SocketTesterView extends View {
 		this.initializeTemplate(__dirname + '/../templates/socket_tester.hbs');
 
 		this.host	= configstore.get('host');
-		this.socket	= io(this.host.host + ':' + this.host.port);
+		if (this.host.port.length > 0) {
+			this.socket	= io(this.host.host + ':' + this.host.port);
+		} else {
+			this.socket	= io(this.host.host);
+		}
 
 		this.socket.on('connect', () => {
 			$('#statusIcon').removeClass('green').addClass('green');
