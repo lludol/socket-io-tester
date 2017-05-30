@@ -22,6 +22,8 @@ function createWindow() {
 		slashes:  true,
 	}));
 
+	mainWindow.setMenu(null);
+
 	mainWindow.on('closed', () => {
 		mainWindow = null;
 	});
