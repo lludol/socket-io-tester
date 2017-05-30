@@ -4,7 +4,8 @@
   "description": "A simple application to test sockets from socket.io",
   "main": "main.js",
   "scripts": {
-    "start": "electron main.js"
+    "start": "electron main.js",
+    "commit": "git cz"
   },
   "repository": {
     "type": "git",
