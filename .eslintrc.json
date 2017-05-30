@@ -1,0 +1,19 @@
+{
+	"env": {
+		"node": true
+	},
+	"globals": {
+		"logger": true
+	},
+	"parserOptions": {
+		"ecmaVersion": 8
+	},
+	"extends": "eslint-config-lludol",
+	"rules": {
+		"comma-dangle": ["error", {
+			"arrays": "always-multiline",
+			"objects": "always-multiline",
+			"functions": "ignore"
+		}]
+	}
+}
