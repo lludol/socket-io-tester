@@ -1,16 +1,17 @@
-'use strict';
+const Backbone = require('backbone');
+const fs = require('fs');
+const Handlebars = require('handlebars');
 
-const Backbone		= require('backbone');
-const fs 			= require('fs');
-const Handlebars	= require('handlebars');
-
+/**
+ * View is a wrapper of Backbone.View.
+ */
 class View extends Backbone.View {
-	constructor(options) {
-		super(options);
-	}
-
+	/**
+	 * Load the template file.
+	 * @param {String} templatePath - The path.
+	 */
 	initializeTemplate(templatePath) {
-		this.template = Handlebars.compile( fs.readFileSync(templatePath, 'utf8') );
+		this.template = Handlebars.compile(fs.readFileSync(templatePath, 'utf8'));
 	}
 }
 

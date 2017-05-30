@@ -1,27 +1,33 @@
-'use strict';
+const io = require('socket.io-client');
+const path = require('path');
 
-const configstore	= require('./../configStore.js');
-const View			= require('./view.js');
-const io			= require('socket.io-client');
+const configstore = require('../configStore.js');
+const View = require('./view.js');
 
+/**
+ * The SocketTester view where we can emit and listen socketss.
+ */
 class SocketTesterView extends View {
+	/**
+	 * Initialize datas for the SocketTesterView.
+	 */
 	constructor() {
 		super({
 			events: {
-				'click #buttonChangeStatus':			'onClickButtonChangeStatus',
-				'click #buttonSendSocket':				'onClickButtonSendSocket',
-				'click #buttonSendListen':				'onClickButtonSendListen',
-				'click #buttonRemoveOutputDiv':			'onClickButtonRemoveOutputDiv',
-				'click #buttonRemoveOutputDivListen':	'onButtonRemoveOutputDivListen',
-				'change input[type=radio]':				'onChangeInput'
-			}
+				'click #buttonChangeStatus':          'onClickButtonChangeStatus',
+				'click #buttonSendSocket':            'onClickButtonSendSocket',
+				'click #buttonSendListen':            'onClickButtonSendListen',
+				'click #buttonRemoveOutputDiv':       'onClickButtonRemoveOutputDiv',
+				'click #buttonRemoveOutputDivListen': 'onButtonRemoveOutputDivListen',
+				'change input[type=radio]':           'onChangeInput',
+			},
 		});
 
-		this.initializeTemplate(__dirname + '/../templates/socket_tester.hbs');
+		this.initializeTemplate(path.join(__dirname, '../templates/socket_tester.hbs'));
 
-		this.host	= configstore.get('host');
+		this.host = configstore.get('host');
 		if (this.host.port.length > 0) {
-			this.socket	= io(this.host.host + ':' + this.host.port);
+			this.socket	= io(`${this.host.host}:${this.host.port}`);
 		} else {
 			this.socket	= io(this.host.host);
 		}
@@ -49,13 +55,22 @@ class SocketTesterView extends View {
 		});
 	}
 
+	/**
+	 * Add a div with the result from the socket server.
+	 * @param {String} className - The name the class associated with the div.
+	 * @param {String} eventName - The name of the socket event.
+	 * @param {Object} insertBefore - Insert the div before this element.
+	 * @param {Object} data - The result from the server.
+	 * @param {Function} onRemove - A function called when the element is removed.
+	 * @return {Object} The created div.
+	 */
 	createOutput(className, eventName, insertBefore, data, onRemove) {
 		const outputDiv = $('#divOutput').clone();
 
 		outputDiv.attr('id', '');
 		outputDiv.addClass(className);
 
-		outputDiv.find('i').click(function() {
+		outputDiv.find('i').click(function () {
 			$(this).parent().remove();
 			onRemove();
 		});
@@ -71,6 +86,9 @@ class SocketTesterView extends View {
 		return outputDiv;
 	}
 
+	/**
+	 * When the user click on the button to reconnect the app to the socket server.
+	 */
 	onClickButtonChangeStatus() {
 		if (this.socket.connected) {
 			this.socket.disconnect();
@@ -79,6 +97,10 @@ class SocketTesterView extends View {
 		}
 	}
 
+	/**
+	 * When the user click on the button to emit a message.
+	 * @param {Object} e - The click event.
+	 */
 	onClickButtonSendSocket(e) {
 		e.preventDefault();
 
@@ -106,14 +128,14 @@ class SocketTesterView extends View {
 				try {
 					data = JSON.parse(data);
 				} catch (error) {
-					$('#sendInputError').show().find('ul').append('<li>' + error + '</li>');
+					$('#sendInputError').show().find('ul').append(`<li>${error}</li>`);
 				}
 			}
 		}
 
 		if (!$('#sendInputError').is(':visible')) {
-			this.socket.emit(eventName, data, (data) => {
-				this.createOutput('outputDiv', eventName, $('#buttonRemoveOutputDiv'), data, () => {
+			this.socket.emit(eventName, data, (dataReceived) => {
+				this.createOutput('outputDiv', eventName, $('#buttonRemoveOutputDiv'), dataReceived, () => {
 					if ($('.outputDiv').length === 0) {
 						$('#buttonRemoveOutputDiv').hide();
 					}
@@ -125,6 +147,10 @@ class SocketTesterView extends View {
 		}
 	}
 
+	/**
+	 * When the user click on the button to add a socket to listen.
+	 * @param {Object} e - The click event.
+	 */
 	onClickButtonSendListen(e) {
 		e.preventDefault();
 
@@ -146,24 +172,34 @@ class SocketTesterView extends View {
 				$('#buttonRemoveOutputDivListen').show();
 			}
 
-			this.socket.on(eventName, function(data) {
+			this.socket.on(eventName, (data) => {
 				outputDiv.find('p').append(JSON.stringify(data));
 				outputDiv.find('p').append('<br>');
 			});
 		}
 	}
 
+	/**
+	 * Called when the user click on the cross to remove the emit div output.
+	 */
 	onClickButtonRemoveOutputDiv() {
 		$('.outputDiv').remove();
 		$('#buttonRemoveOutputDiv').hide();
 	}
 
+	/**
+	 * Called when the user click on the cross to remove the listen div output.
+	 */
 	onButtonRemoveOutputDivListen() {
 		$('.outputDivListen').remove();
 		$('#buttonRemoveOutputDivListen').hide();
 		this.socket.removeAllListeners();
 	}
 
+	/**
+	 * Method called when the user change the data type.
+	 * @param {Object} e - The change event.
+	 */
 	onChangeInput(e) {
 		const value = $(e.currentTarget).val();
 		if (value === 'text') {
@@ -176,6 +212,9 @@ class SocketTesterView extends View {
 		$('#sendInputError').hide();
 	}
 
+	/**
+	 * Render the view.
+	 */
 	render() {
 		this.$el.html(this.template(this.host));
 	}
