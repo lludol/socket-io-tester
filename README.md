@@ -2,10 +2,8 @@
 
 > A simple application to test sockets from [socket.io](http://socket.io/).
 
-[![dependency status](https://david-dm.org/lludol/socket-io-tester.svg)](https://david-dm.org/lludol/socket-io-tester\
-)
-[![dev-dependencies status](https://david-dm.org/lludol/socket-io-tester/dev-status.svg)](https://david-dm.org/lludol\
-/socket-io-tester#info=devDependencies)
+[![dependency status](https://david-dm.org/lludol/socket-io-tester.svg)](https://david-dm.org/lludol/socket-io-tester)
+[![dev-dependencies status](https://david-dm.org/lludol/socket-io-tester/dev-status.svg)](https://david-dm.org/lludol/socket-io-tester#info=devDependencies)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
 # Usage
