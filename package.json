@@ -36,6 +36,5 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  },
-  "snyk": true
+  }
 }
