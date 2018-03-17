@@ -21,7 +21,7 @@
   "devDependencies": {
     "cz-conventional-changelog": "^2.0.0",
     "electron": "^1.6.10",
-    "eslint": "^3.19.0",
+    "eslint": "^4.19.0",
     "eslint-config-lludol": "^0.1.6"
   },
   "dependencies": {
