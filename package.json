@@ -19,7 +19,7 @@
     "url": "https://github.com/lludol/socket-io-tester/issues"
   },
   "devDependencies": {
-    "cz-conventional-changelog": "^2.0.0",
+    "cz-conventional-changelog": "^3.0.0",
     "electron": "^1.6.10",
     "eslint": "^3.19.0",
     "eslint-config-lludol": "^0.1.6"
