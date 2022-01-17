@@ -7,7 +7,9 @@
     "start": "electron main.js",
     "commit": "git cz",
     "lint": "eslint .",
-    "fix-code": "eslint . --fix"
+    "fix-code": "eslint . --fix",
+    "prepublish": "npm run snyk-protect",
+    "snyk-protect": "snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -27,14 +29,16 @@
   "dependencies": {
     "backbone": "^1.3.2",
     "configstore": "^3.0.0",
-    "handlebars": "^4.0.5",
-    "jquery": "^3.1.1",
-    "socket.io-client": "^2.0.0",
-    "validator": "^7.0.0"
+    "handlebars": "^4.7.7",
+    "jquery": "^3.5.0",
+    "socket.io-client": "^2.4.0",
+    "validator": "^13.7.0",
+    "@snyk/protect": "latest"
   },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  }
+  },
+  "snyk": true
 }
